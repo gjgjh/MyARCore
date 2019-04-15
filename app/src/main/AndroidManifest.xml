@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pkunal.myarcore">
-
     <!-- Both "AR Optional" and "AR Required" apps require CAMERA permission. -->
     <uses-permission android:name="android.permission.CAMERA" />
-
-    <!-- Indicates that app requires ARCore ("AR Required"). Ensures app is only
+    <!--
+ Indicates that app requires ARCore ("AR Required"). Ensures app is only
          visible in the Google Play Store on devices that support ARCore.
-         For "AR Optional" apps remove this line. -->
-    <uses-feature android:name="android.hardware.camera.ar" />
+         For "AR Optional" apps remove this line.
+    -->
+    <uses-feature android:name="android.hardware.camera.ar" /> <!-- Needed to load a glTF from the internet. -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,18 +18,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!-- Indicates that app requires ARCore ("AR Required"). Causes Google
+        <activity android:name=".WithoutARActivity"></activity>
+        <activity android:name=".RuntimeActivity" />
+        <!--
+         Indicates that app requires ARCore ("AR Required"). Causes Google
          Play Store to download and install ARCore along with the app.
-         For an "AR Optional" app, specify "optional" instead of "required".-->
-        <meta-data android:name="com.google.ar.core" android:value="required" />
+         For an "AR Optional" app, specify "optional" instead of "required".
+        -->
+        <meta-data
+            android:name="com.google.ar.core"
+            android:value="required" />
 
-        <activity android:name=".ShapeActivity"></activity>
+        <activity android:name=".ShapeActivity" />
         <activity android:name=".FlatCardActivity" />
         <activity android:name=".AndyActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -60,6 +60,7 @@ public class AndyActivity extends AppCompatActivity {
                             return null;
                         });
 
+        // ArFragment has built in support for tap (selection), drag (move), pinch (scale), and twist (rotate) gestures.
         arFragment.setOnTapArPlaneListener(
                 (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
                     if (andyRenderable == null) {

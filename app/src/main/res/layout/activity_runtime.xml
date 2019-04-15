@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FlatCardActivity">
+    tools:context=".RuntimeActivity">
 
     <fragment android:name="com.google.ar.sceneform.ux.ArFragment"
-        android:id="@+id/ux_fragment_flat_card"
+        android:id="@+id/ux_fragment_runtime"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

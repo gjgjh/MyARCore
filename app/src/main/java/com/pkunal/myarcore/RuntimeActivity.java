@@ -3,10 +3,12 @@ package com.pkunal.myarcore;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
@@ -14,6 +16,7 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.Color;
 import com.google.ar.sceneform.rendering.MaterialFactory;
@@ -22,12 +25,14 @@ import com.google.ar.sceneform.rendering.ShapeFactory;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
-public class ShapeActivity extends AppCompatActivity {
+public class RuntimeActivity extends AppCompatActivity {
     private static final String TAG = ShapeActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.0;
+    private static final String GLTF_ASSET =
+            "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf";
 
     private ArFragment arFragment;
-    private ModelRenderable redSphereRenderable;
+    private ModelRenderable duckRenderable;
 
     @Override
     @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
@@ -40,29 +45,35 @@ public class ShapeActivity extends AppCompatActivity {
             return;
         }
 
-        setContentView(R.layout.activity_shape);
-        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment_shape);
+        setContentView(R.layout.activity_runtime);
+        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment_runtime);
 
         // When you build a Renderable, Sceneform loads its resources in the background while returning
         // a CompletableFuture. Call thenAccept(), handle(), or check isDone() before calling get().
-        // sphere
-        MaterialFactory.makeOpaqueWithColor(this, new Color(android.graphics.Color.RED))
-                .thenAccept(
-                        material -> {
-                            redSphereRenderable =
-                                    ShapeFactory.makeSphere(0.1f, new Vector3(0.0f, 0.15f, 0.0f), material); });
-
-        // cylinder
-        /*
-        MaterialFactory.makeOpaqueWithColor(this, new Color(android.graphics.Color.RED))
-                .thenAccept(
-                        material -> {
-                            redSphereRenderable =
-                                    ShapeFactory.makeCylinder(0.1f,1f,new Vector3(0.0f, 0.15f, 0.0f), material); });*/
+        ModelRenderable.builder()
+                .setSource(this, RenderableSource.builder().setSource(
+                        this,
+                        Uri.parse(GLTF_ASSET),
+                        RenderableSource.SourceType.GLTF2)
+                        .setScale(0.5f)  // Scale the original model to 50%.
+                        .setRecenterMode(RenderableSource.RecenterMode.ROOT)
+                        .build())
+                .setRegistryId(GLTF_ASSET)
+                .build()
+                .thenAccept(renderable -> duckRenderable = renderable)
+                .exceptionally(
+                        throwable -> {
+                            Toast toast =
+                                    Toast.makeText(this, "Unable to load renderable " +
+                                            GLTF_ASSET, Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                            return null;
+                        });
 
         arFragment.setOnTapArPlaneListener(
                 (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (redSphereRenderable == null) {
+                    if (duckRenderable == null) {
                         return;
                     }
 
@@ -74,7 +85,7 @@ public class ShapeActivity extends AppCompatActivity {
                     // Create the transformable andy and add it to the anchor.
                     TransformableNode andy = new TransformableNode(arFragment.getTransformationSystem());
                     andy.setParent(anchorNode);
-                    andy.setRenderable(redSphereRenderable);
+                    andy.setRenderable(duckRenderable);
                     andy.select();
                 });
     }

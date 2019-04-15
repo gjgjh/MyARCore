@@ -33,4 +33,13 @@
         android:layout_below="@id/button_andy"
         android:text="add simple shape" />
 
+    <Button
+        android:id="@+id/button_runtime"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_shape"
+        android:text="add model at runtime" />
+
 </RelativeLayout>

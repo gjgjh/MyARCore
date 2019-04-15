@@ -10,6 +10,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mButtonAddFlatCard;
     private Button mButtonAddAndy;
     private Button mButtonAddShape;
+    private Button mButtonRuntime;
+    private Button mButtonWithoutAR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButtonAddAndy.setOnClickListener(this);
         mButtonAddShape=findViewById(R.id.button_shape);
         mButtonAddShape.setOnClickListener(this);
+        mButtonRuntime=findViewById(R.id.button_runtime);
+        mButtonRuntime.setOnClickListener(this);
     }
 
     @Override
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent=null;
         switch (v.getId()){
             case R.id.button_flat_card:
+                intent=new Intent(MainActivity.this,FlatCardActivity.class);
+                startActivity(intent);
                 break;
             case R.id.button_andy:
                 intent=new Intent(MainActivity.this,AndyActivity.class);
@@ -40,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_shape:
                 intent=new Intent(MainActivity.this,ShapeActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.button_runtime:
+                intent=new Intent(MainActivity.this,RuntimeActivity.class);
                 startActivity(intent);
                 break;
             default:
