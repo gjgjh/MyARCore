@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mButtonAddAndy;
     private Button mButtonAddShape;
     private Button mButtonRuntime;
-    private Button mButtonWithoutAR;
+    private Button mButtonRecording;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButtonAddShape.setOnClickListener(this);
         mButtonRuntime=findViewById(R.id.button_runtime);
         mButtonRuntime.setOnClickListener(this);
+        mButtonRecording=findViewById(R.id.button_video_recording);
+        mButtonRecording.setOnClickListener(this);
     }
 
     @Override
@@ -50,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_runtime:
                 intent=new Intent(MainActivity.this,RuntimeActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.button_video_recording:
+                intent=new Intent(MainActivity.this,RecordingActivity.class);
                 startActivity(intent);
                 break;
             default:

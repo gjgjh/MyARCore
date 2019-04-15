@@ -42,4 +42,13 @@
         android:layout_below="@id/button_shape"
         android:text="add model at runtime" />
 
+    <Button
+        android:id="@+id/button_video_recording"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_runtime"
+        android:text="video recording" />
+
 </RelativeLayout>
