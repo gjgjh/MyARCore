@@ -9,10 +9,8 @@
          For "AR Optional" apps remove this line.
     -->
     <uses-feature android:name="android.hardware.camera.ar" /> <!-- Needed to load a glTF from the internet. -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- Write to external storage for saving video -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Write to external storage for saving video -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecordingActivity"></activity>
+        <activity android:name=".InTheAirActivity"></activity>
+        <activity android:name=".RecordingActivity" />
         <activity android:name=".RuntimeActivity" />
         <!--
          Indicates that app requires ARCore ("AR Required"). Causes Google

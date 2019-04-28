@@ -1,8 +1,8 @@
 package com.pkunal.myarcore;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mButtonAddShape;
     private Button mButtonRuntime;
     private Button mButtonRecording;
+    private Button mButtonInTheAir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButtonRuntime.setOnClickListener(this);
         mButtonRecording=findViewById(R.id.button_video_recording);
         mButtonRecording.setOnClickListener(this);
+        mButtonInTheAir=findViewById(R.id.button_add_object_in_the_air);
+        mButtonInTheAir.setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_video_recording:
                 intent=new Intent(MainActivity.this,RecordingActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.button_add_object_in_the_air:
+                intent=new Intent(MainActivity.this,InTheAirActivity.class);
                 startActivity(intent);
                 break;
             default:
