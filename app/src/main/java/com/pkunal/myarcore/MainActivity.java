@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mButtonRuntime;
     private Button mButtonRecording;
     private Button mButtonInTheAir;
+    private Button mButtonInTheAir2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButtonRecording.setOnClickListener(this);
         mButtonInTheAir=findViewById(R.id.button_add_object_in_the_air);
         mButtonInTheAir.setOnClickListener(this);
+        mButtonInTheAir2=findViewById(R.id.button_add_object_in_the_air2);
+        mButtonInTheAir2.setOnClickListener(this);
     }
 
     @Override
@@ -63,6 +66,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.button_add_object_in_the_air:
                 intent=new Intent(MainActivity.this,InTheAirActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.button_add_object_in_the_air2:
+                intent=new Intent(MainActivity.this,InTheAir2Activity.class);
                 startActivity(intent);
                 break;
             default:

@@ -8,5 +8,6 @@
 - 运行时动态添加模型
 - 屏幕录制
 - 在空中添加物体
+- 在空中添加自定义文字
 
-<img src="https://github.com/gjgjh/MyARCore/blob/master/support_files/demo.png" width = 40% height = 40% />
+<img src="https://github.com/gjgjh/MyARCore/blob/master/support_files/demo.png" width = 40% height = 40% div align=left/> <img src="https://github.com/gjgjh/MyARCore/blob/master/support_files/demo2.png" width = 40% height = 40% div align=center/>

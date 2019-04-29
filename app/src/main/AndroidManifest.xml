@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InTheAirActivity"></activity>
+        <activity android:name=".InTheAir2Activity"></activity>
+        <activity android:name=".InTheAirActivity" />
         <activity android:name=".RecordingActivity" />
         <activity android:name=".RuntimeActivity" />
         <!--

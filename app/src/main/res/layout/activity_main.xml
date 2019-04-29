@@ -59,4 +59,13 @@
         android:layout_below="@id/button_video_recording"
         android:text="add object in the air" />
 
+    <Button
+        android:id="@+id/button_add_object_in_the_air2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_add_object_in_the_air"
+        android:text="add object in the air2" />
+
 </RelativeLayout>
